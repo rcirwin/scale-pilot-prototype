@@ -136,8 +136,8 @@ function SILogo({ size = 32 }: { size?: number }) {
 // Sidebar Component with slide-out hover behavior
 // ---------------------------------------------------------------------------
 
-const COLLAPSED_WIDTH = 56;
-const EXPANDED_WIDTH = 260;
+const COLLAPSED_WIDTH = 60;
+const EXPANDED_WIDTH = 270;
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -168,18 +168,18 @@ export function Sidebar() {
         onMouseLeave={() => setExpanded(false)}
       >
         {/* Header: hamburger + logo + title */}
-        <div className="flex items-center gap-3 px-3 shrink-0" style={{ height: 56 }}>
-          <div className="flex items-center justify-center shrink-0" style={{ width: 32 }}>
+        <div className="flex items-center gap-3 px-2 shrink-0" style={{ height: 70 }}>
+          <div className="flex items-center justify-center shrink-0" style={{ width: 44 }}>
             {expanded ? (
-              <Menu size={20} className="text-[#adb5bd]" />
+              <Menu size={22} className="text-[#adb5bd]" />
             ) : (
-              <SILogo size={32} />
+              <SILogo size={44} />
             )}
           </div>
           {expanded && (
             <div className="flex items-center gap-2.5 min-w-0">
-              <SILogo size={34} />
-              <span className="text-white font-semibold text-[15px] whitespace-nowrap">Scale Insights</span>
+              <SILogo size={42} />
+              <span className="text-white font-semibold text-[16px] whitespace-nowrap">Scale Insights</span>
             </div>
           )}
         </div>
@@ -191,10 +191,10 @@ export function Sidebar() {
             <div
               key={item.label}
               className="flex items-center w-full cursor-default transition-colors hover:bg-white/5 shrink-0"
-              style={{ height: 56, color: item.color }}
+              style={{ height: 60, color: item.color }}
             >
               <div className="flex items-center justify-center shrink-0" style={{ width: COLLAPSED_WIDTH }}>
-                <svg viewBox={item.viewBox} width="20" height="20" fill="currentColor">
+                <svg viewBox={item.viewBox} width="28" height="28" fill="currentColor">
                   <path d={item.path} />
                 </svg>
               </div>
@@ -222,14 +222,14 @@ export function Sidebar() {
                 href={item.href}
                 className="flex items-center w-full transition-colors shrink-0 hover:bg-white/5"
                 style={{
-                  height: 56,
+                  height: 60,
                   backgroundColor: active ? '#253147' : undefined,
                   borderLeft: active ? `3px solid ${item.color}` : '3px solid transparent',
                   color: item.color,
                 }}
               >
-                <div className="flex items-center justify-center shrink-0" style={{ width: active ? COLLAPSED_WIDTH - 3 : COLLAPSED_WIDTH - 3 }}>
-                  <Icon size={20} />
+                <div className="flex items-center justify-center shrink-0" style={{ width: COLLAPSED_WIDTH - 3 }}>
+                  <Icon size={24} />
                 </div>
                 {expanded && (
                   <div className="min-w-0 pr-3">
