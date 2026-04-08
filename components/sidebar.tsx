@@ -128,7 +128,7 @@ const pilotItems: PilotNavItem[] = [
 function SILogo({ size = 32 }: { size?: number }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
-    <img src="/si-logo.png" alt="Scale Insights" width={size} height={size} className="rounded-full" />
+    <img src="/si-logo.svg" alt="Scale Insights" width={size} height={size} />
   );
 }
 
