@@ -7,16 +7,16 @@ import { actions } from '@/data/actions';
 
 export default function ActivityPage() {
   return (
-    <div className="max-w-[1200px] space-y-6">
+    <div className="max-w-[1400px] space-y-6">
       <div>
         <h1 className="text-lg font-bold text-gray-900">Activity &amp; Action Log</h1>
         <p className="text-sm text-[#6c757d]">All PPC actions tracked with KPI correlation</p>
       </div>
 
-      {/* KPI Chart with action markers */}
-      <div className="bg-white rounded-lg border border-[#e2e8f0] p-5">
+      {/* Performance Trend Chart */}
+      <div className="bg-white rounded-lg border border-[#e2e8f0] p-3 sm:p-5">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-sm font-semibold text-gray-900">KPI Trend with Action Markers</h2>
+          <h2 className="text-sm font-semibold text-gray-900">Performance Trend</h2>
           <div className="flex items-center gap-4 text-xs text-[#6c757d]">
             <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-[#45a19c]" /> Scale Pilot</span>
             <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-gray-400" /> Manual</span>
@@ -27,7 +27,7 @@ export default function ActivityPage() {
       </div>
 
       {/* Action Log Table */}
-      <div className="bg-white rounded-lg border border-[#e2e8f0] p-5">
+      <div className="bg-white rounded-lg border border-[#e2e8f0] p-3 sm:p-5">
         <h2 className="text-sm font-semibold text-gray-900 mb-4">Action Log</h2>
         <ActionLogTable actions={actions} />
       </div>
