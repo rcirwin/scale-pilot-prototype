@@ -70,6 +70,28 @@ const priorityOptions = [
 
 const cadenceOptions = ['Daily', 'Every 2 Days', 'Weekly', 'Bi-Weekly', 'Monthly'];
 
+function NotificationToggleRow({ title, detail, defaultEnabled }: { title: string; detail: string; defaultEnabled: boolean }) {
+  const [enabled, setEnabled] = useState(defaultEnabled);
+  return (
+    <div className="flex items-start justify-between gap-3 px-3 py-3">
+      <div className="min-w-0">
+        <p className="text-xs font-semibold text-gray-900">{title}</p>
+        <p className="text-[11px] text-[#6c757d] leading-relaxed mt-0.5">{detail}</p>
+      </div>
+      <button
+        onClick={() => setEnabled(!enabled)}
+        className={`relative w-9 h-5 rounded-full shrink-0 transition-colors ${
+          enabled ? 'bg-[#45a19c]' : 'bg-gray-300'
+        }`}
+      >
+        <div className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform ${
+          enabled ? 'translate-x-4' : 'translate-x-0'
+        }`} />
+      </button>
+    </div>
+  );
+}
+
 export default function SettingsPage() {
   const [notifications, setNotifications] = useState('in-app');
   const [saved, setSaved] = useState(false);
@@ -366,34 +388,86 @@ export default function SettingsPage() {
 
       {/* Notifications */}
       <div className="bg-white rounded-lg border border-[#e2e8f0] p-4 sm:p-5">
-        <h2 className="text-sm font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <h2 className="text-sm font-semibold text-gray-900 mb-1 flex items-center gap-2">
           <Bell className="w-4 h-4 text-[#45a19c]" /> Notifications
         </h2>
-        <div className="flex flex-wrap gap-3">
-          {[
-            { value: 'in-app', label: 'In-app only' },
-            { value: 'email', label: 'Email digest' },
-            { value: 'none', label: 'None' },
-          ].map(opt => (
-            <label
-              key={opt.value}
-              className={`flex-1 min-w-[120px] p-3 rounded-lg border cursor-pointer text-center transition-colors ${
-                notifications === opt.value
-                  ? 'border-[#45a19c] bg-[#45a19c]/5'
-                  : 'border-[#e2e8f0] hover:border-gray-300'
-              }`}
-            >
-              <input
-                type="radio"
-                name="notifications"
-                value={opt.value}
-                checked={notifications === opt.value}
-                onChange={() => setNotifications(opt.value)}
-                className="sr-only"
+        <p className="text-xs text-[#6c757d] mb-4">Choose what Scale Pilot notifies you about and where.</p>
+
+        {/* Delivery channel */}
+        <div>
+          <p className="text-xs font-semibold text-gray-900 mb-2">Delivery channel</p>
+          <div className="flex flex-wrap gap-3">
+            {[
+              { value: 'in-app', label: 'In-app only' },
+              { value: 'email', label: 'Email digest' },
+              { value: 'none', label: 'None' },
+            ].map(opt => (
+              <label
+                key={opt.value}
+                className={`flex-1 min-w-[120px] p-3 rounded-lg border cursor-pointer text-center transition-colors ${
+                  notifications === opt.value
+                    ? 'border-[#45a19c] bg-[#45a19c]/5'
+                    : 'border-[#e2e8f0] hover:border-gray-300'
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="notifications"
+                  value={opt.value}
+                  checked={notifications === opt.value}
+                  onChange={() => setNotifications(opt.value)}
+                  className="sr-only"
+                />
+                <p className="text-sm font-medium text-gray-900">{opt.label}</p>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {/* Notification types */}
+        <div className="mt-5">
+          <p className="text-xs font-semibold text-gray-900 mb-2">What to notify me about</p>
+          <div className="rounded-lg border border-[#e2e8f0] divide-y divide-[#e2e8f0]">
+            {[
+              {
+                key: 'daily_review',
+                title: 'Daily recommendation overview',
+                detail: 'Each morning — count of new Scale Optimizer recommendations awaiting review, by priority.',
+                defaultEnabled: true,
+              },
+              {
+                key: 'weekly_report',
+                title: 'Weekly performance report',
+                detail: 'Mondays — summary of agent actions, savings, account performance, and top ASIN movement.',
+                defaultEnabled: true,
+              },
+              {
+                key: 'monthly_report',
+                title: 'Monthly performance report',
+                detail: '1st of each month — full monthly report with agent actions, performance, and ASIN deep-dive.',
+                defaultEnabled: true,
+              },
+              {
+                key: 'critical_finding',
+                title: 'Critical findings (real-time)',
+                detail: 'Notify immediately on high-severity findings — out-of-stock with active ads, ACOS spikes, etc.',
+                defaultEnabled: true,
+              },
+              {
+                key: 'action_executed',
+                title: 'Agent action confirmations',
+                detail: 'Notify when Scale Pilot executes an auto-approved action.',
+                defaultEnabled: false,
+              },
+            ].map(t => (
+              <NotificationToggleRow
+                key={t.key}
+                title={t.title}
+                detail={t.detail}
+                defaultEnabled={t.defaultEnabled}
               />
-              <p className="text-sm font-medium text-gray-900">{opt.label}</p>
-            </label>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 

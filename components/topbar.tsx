@@ -1,6 +1,7 @@
 'use client';
 
 import { Search, User } from 'lucide-react';
+import { NotificationsDropdown } from './notifications-dropdown';
 
 interface TopbarProps {
   title?: string;
@@ -28,6 +29,9 @@ export function Topbar({ title = 'Scale Pilot' }: TopbarProps) {
             className="h-[38px] w-[160px] md:w-[240px] pl-9 pr-3 text-[14px] bg-white border border-[#dee2e6] rounded text-[#212529] placeholder:text-[#adb5bd] focus:outline-none focus:border-[#86b7fe] focus:shadow-[0_0_0_3px_rgba(13,110,253,.25)]"
           />
         </div>
+
+        {/* Notifications */}
+        <NotificationsDropdown />
 
         {/* Marketplace selector */}
         <div className="flex items-center gap-1.5 h-[38px] px-2 sm:px-3 text-sm border border-[#dee2e6] rounded bg-white cursor-pointer hover:bg-[#f8f9fa]">

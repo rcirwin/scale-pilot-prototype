@@ -11,6 +11,7 @@ import {
   Settings,
   Menu,
   Search,
+  FileBarChart,
 } from 'lucide-react';
 
 // ---------------------------------------------------------------------------
@@ -118,6 +119,7 @@ const pilotItems: PilotNavItem[] = [
   { label: 'Scale Optimizer', subtitle: 'Review recommendations', color: '#45a19c', icon: Zap, href: '/optimizer' },
   { label: 'Findings', subtitle: 'Research & investigations', color: '#45a19c', icon: Search, href: '/findings' },
   { label: 'Activity', subtitle: 'Detailed change log', color: '#45a19c', icon: Activity, href: '/activity' },
+  { label: 'Reports', subtitle: 'Weekly & monthly summaries', color: '#45a19c', icon: FileBarChart, href: '/reports' },
   { label: 'Chat', subtitle: 'Ask Scale Pilot', color: '#45a19c', icon: MessageSquare, href: '/chat' },
   { label: 'Settings', subtitle: 'Configure Scale Pilot', color: '#6c757d', icon: Settings, href: '/settings' },
 ];

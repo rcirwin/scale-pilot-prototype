@@ -6,6 +6,7 @@ import { KPIChart } from '@/components/kpi-chart';
 import { ChatInput } from '@/components/chat-input';
 import { ChatSlideout } from '@/components/chat-slideout';
 import { ActionLogTable } from '@/components/action-log-table';
+import { AccountContextPanel } from '@/components/account-context-panel';
 import { findings } from '@/data/findings';
 import { dailyKPIs, actionMarkers } from '@/data/kpi-data';
 import { actions } from '@/data/actions';
@@ -155,11 +156,15 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Chat Input */}
+      {/* Account Knowledge & Context */}
+      <AccountContextPanel />
+
+      {/* Ask Scale Pilot */}
       <div className="bg-white rounded-lg border border-[#e2e8f0] p-3 sm:p-4">
+        <p className="text-xs font-semibold text-gray-900 mb-2">Ask Scale Pilot</p>
         <ChatInput
           onSend={() => { window.location.href = '/chat'; }}
-          placeholder="Ask Scale Pilot anything about your account..."
+          placeholder="Ask anything about your account — Scale Pilot will use your saved context above..."
         />
         <p className="text-xs text-[#6c757d] text-center mt-2">AI-generated analysis - verify important data before taking action.</p>
       </div>
